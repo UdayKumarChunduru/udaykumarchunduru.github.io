@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --accent: #8b5cf6;
+    --accent-dim: rgba(139, 92, 246, 0.15);
+    --accent-border: rgba(139, 92, 246, 0.35);
+    --glass: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.07);
+    --glass-hover: rgba(139, 92, 246, 0.08);
+    --nav-h: 64px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply font-sans;
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(139, 92, 246, 0.4);
+    color: #fff;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { @apply bg-zinc-950; }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+}
+
+@layer utilities {
+  /* Glass card */
+  .glass {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glass-hover:hover {
+    background: var(--glass-hover);
+    border-color: var(--accent-border);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow */
+  .glow-violet {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.25);
+  }
+
+  /* Tight section spacing */
+  .section-pad {
+    @apply py-20 px-5 max-w-6xl mx-auto;
+  }
+
+  /* Tag pill */
+  .tag {
+    @apply text-xs px-2.5 py-1 rounded-md font-mono font-medium
+           bg-white/5 border border-white/10 text-zinc-400
+           hover:border-violet-500/40 hover:text-violet-300
+           transition-colors duration-200 cursor-default;
+  }
+
+  /* Dot pulse */
+  .dot-pulse {
+    animation: dot-pulse 2s ease-in-out infinite;
+  }
+  @keyframes dot-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.75); }
+  }
+
+  /* Terminal cursor blink */
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+}
